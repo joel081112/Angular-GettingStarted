@@ -3,3 +3,7 @@ ng g c products/product-detail --flat
 
 ng g g products/product-detail
 # this cmd will create the guard to secure the routes
+
+
+ng g m products/product --flat -m app
+# create the new module called product in the products folder to be used in app
