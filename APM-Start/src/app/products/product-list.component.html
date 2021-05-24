@@ -1,0 +1,58 @@
+<div class="card">
+    <div class="card-header">
+        {{'Title: ' + pageTitle}} <h5 innerText="{{pageText}}"></h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                Filter by:
+
+            </div>
+            <div class="col-md-4">
+                <input type="text" 
+                [(ngModel)]='listFilter' placeholder="type"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Filtered by: {{listFilter}}</h4>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table" *ngIf='products.length'>
+                <thead>
+                    <tr>
+                        <th>
+                            <button class="btn btn-primary" (click)='toggleImage()'>
+                                <!-- If show image is true hide and if false show -->
+                                {{ showImage ? 'Hide' : 'Show' }} image
+                            </button>
+                        </th>
+                        <th>Product</th>
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>Price</th>
+                        <th>5 star rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor=' let product of filteredProducts'>
+                        <td><img *ngIf='showImage' 
+                            [src]='product.imageUrl' alt="productURL" 
+                            [title]='product.productName'
+                            [style.height.px]='imageHeight' [style.margin.px]='imageMargin'>
+
+                        </td>
+                        <td><a [routerLink]="['/products', product.productId]" >{{product.productId}} | {{product.productName}}</a></td>
+                        <td>{{product.productCode | lowercase | convertToSpaces:'-' }}</td>
+                        <td>{{product.releaseDate}}</td>
+
+                        <!-- min num digits to left of decimal, min fraction and max fraction digits -->
+                        <td>{{product.price | currency:'GBP':'symbol':'1.2-2' }}</td>
+                        <td><pm-star [rating]='product.starRating' (ratingClicked)='onRatingClicked($event)'></pm-star></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

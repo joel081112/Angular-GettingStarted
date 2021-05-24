@@ -1,0 +1,5 @@
+ng g c products/product-detail --flat 
+# This cmd created the 4 connected files product-detail automatically
+
+ng g g products/product-detail
+# this cmd will create the guard to secure the routes
