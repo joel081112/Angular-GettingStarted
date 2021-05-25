@@ -1,0 +1,16 @@
+<div class="card col-5 mx-auto">
+  <div class="card-header">
+    <p>heroes works! this is our heroes.</p>
+  </div>
+  <div class="card-body">
+    <div>
+      <!-- <pre>{{ heroes | json }}</pre> -->
+    </div>
+    <div>
+      <ul>
+        <li *ngFor="let hero of heroes" (click)="ok(hero)">{{ hero.name }}</li>
+      </ul>
+    </div>
+    <div *ngIf="selectedHero">you selected {{ selectedHero.name }}</div>
+  </div>
+</div>
